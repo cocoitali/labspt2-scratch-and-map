@@ -45,11 +45,10 @@ class UserSchema(ma.ModelSchema):
     class Meta:
         model = users
         fields = ('id','username', 'email', 'first_name', 'last_name', 'age', 'nationality', 'picture_url', 'role', 'home_country', 'user_countries', 'fb_user_id', 'fb_access_token', 'premium')
-    user_countries = fields.Nested('UserCountrySchema', many = True,
+        user_countries = fields.Nested('UserCountrySchema', many = True,
                                     only = ['user_id','country_id', 'status', 'notes'])
-
-user_schema = UserSchema()
-users_schema = UserSchema(many=True)
+        user_schema = UserSchema()
+        users_schema = UserSchema(many=True)
 
 class countries(db.Model):
     id = db.Column(Integer, autoincrement=True, primary_key=True)
@@ -71,10 +70,10 @@ class CountrySchema(ma.ModelSchema):
     class Meta:
         fields = ('country_name', 'flag', 'country_img', 'code', 'travelers')
         model = countries
-    travelers = fields.Nested('UserCountrySchema', many = True,
+        travelers = fields.Nested('UserCountrySchema', many = True,
                                     only = ['user_id', 'status','fb_user_id', 'fb_access_token'])
-country_schema = CountrySchema()
-countries_schema = CountrySchema(many=True)
+        country_schema = CountrySchema()
+        countries_schema = CountrySchema(many=True)
 
 class users_countries_join(db.Model):
     id = db.Column(Integer, autoincrement=True, primary_key=True)
@@ -98,8 +97,8 @@ class UserCountrySchema(ma.ModelSchema):
     class Meta:
         fields = ( 'user_id', 'country_id', 'status', 'notes')
         model = users_countries_join
-user_country_schema = UserCountrySchema()
-users_country_schema = UserCountrySchema(many=True)
+        user_country_schema = UserCountrySchema()
+        users_country_schema = UserCountrySchema(many=True)
 
 '''class friends_with(db.Model):
     id = db.Column(Integer, autoincrement=True, primary_key=True)
