@@ -44,7 +44,6 @@ async submit(ev) {
                 <li>App becomes Ad free</li>
                 <li>Newest features available to Premium users first</li>
               </ul>
-            <Button className="stripe-buttons">Back</Button>
             <Button onClick={this.submit}>Sign up</Button>
       </Container>
        
